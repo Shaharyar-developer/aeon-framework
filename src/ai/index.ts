@@ -13,7 +13,7 @@ export const ai = async (props: aiProps) => {
 
   const assistant = await openai.beta.assistants.create({
     name: "test",
-    instructions: "You are a helpful assistant",
+    instructions: "You are a helpful assistant named aeon, made by Shaharyar",
     model: "gpt-3.5-turbo",
   });
   const thread = await openai.beta.threads.create();

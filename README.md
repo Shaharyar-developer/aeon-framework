@@ -15,5 +15,8 @@ This framework/base provides a solid foundation for developing AI applications i
 To install the framework, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/Shaharyar-developer/aeon-framework.git`
-2. Run Docker Compose: `run docker compose up`
+2. Make sure you have bun installed. 
+3. Install the dependencies: `bun install`
+4. Add your OpenAI api key to the .env file.
+5. Run it with a test prompt e.g.: bun run dev "Hello There"
 

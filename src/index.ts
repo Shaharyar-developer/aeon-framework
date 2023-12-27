@@ -1,6 +1,6 @@
 import { cli } from "@/cli/index";
 import { ai } from "@/ai/index";
-const prompt = process.argv.slice(2).join(" ");
+const prompt = Bun.argv.slice(2).join(" ");
 if (prompt !== "") {
   if (process.env.OPENAI_KEY === undefined) {
     console.error("OPENAI_KEY environment variable is not set.");

@@ -1,5 +1,3 @@
 import { cli } from "@/libs/types";
-const cli = async ({}: cli) => {
-  console.log("Hello World!");
-};
+const cli = async ({}: cli) => {};
 export { cli };
