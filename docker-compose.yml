@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  app:
+    image: oven/bun:latest
+    working_dir: /home/shaharyar/projects/aeon
+    volumes:
+      - .:/home/shaharyar/projects/aeon
+    command: ["bun", "run", "dev"]
+    environment:
+      - PORT=3000
+    ports:
+      - "3000:3000"
