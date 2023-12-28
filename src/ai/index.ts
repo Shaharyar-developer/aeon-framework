@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import type { aiProps, aiResponse } from "@/libs/types";
+import type { aiPropsType, aiResponse } from "@/libs/types";
 /**
  * AI function that interacts with the OpenAI API to generate responses based on user prompts.
  * @param props - The input properties for the AI function.
@@ -8,7 +8,7 @@ import type { aiProps, aiResponse } from "@/libs/types";
  * @returns The generated response from the AI model.
  */
 
-export const ai = async (props: aiProps) => {
+export const ai = async (props: aiPropsType) => {
   const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 
   const assistant = await openai.beta.assistants.create({

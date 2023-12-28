@@ -1,5 +1,5 @@
-import { cli } from "@/cli/index";
-import { server } from "@/server/index";
+import { client } from "@/client/index";
+import { Server } from "@/server/index";
 if (process.env.OPENAI_KEY === undefined) {
   console.error("OPENAI_KEY environment variable is not set.");
   console.error(
@@ -7,8 +7,8 @@ if (process.env.OPENAI_KEY === undefined) {
   );
 } else {
   async function Main() {
-    server();
-    cli({});
+    Server();
+    client({});
   }
   Main();
 }

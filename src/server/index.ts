@@ -1,21 +1,19 @@
-import express from "express";
+import { publicProcedure, router } from "@/server/trpc";
+import { createHTTPServer } from "@trpc/server/adapters/standalone";
+
 import { ai } from "@/ai/index";
-import { aiProps, aiResponse } from "@/libs/types";
-const server = () => {
-  const app = express();
-  app.use(express.json());
+import { aiResponse, aiProps } from "@/libs/types";
 
-  app.post("/api/ai", async (req, res) => {
-    const data = req.body as aiProps;
-    try {
-      const response = (await ai(data)) as aiResponse;
-      res.json(response);
-    } catch (error) {
-      res.status(500).send(error);
-    }
-    console.log(data);
-  });
+const appRouter = router({
+  aiResponse: publicProcedure.input(aiProps).query(async (opts) => {
+    const { input } = opts;
 
-  app.listen(3000, () => {});
-};
-export { server };
+    const response = (await ai(input)) as aiResponse;
+    return response;
+  }),
+});
+const server = createHTTPServer({
+  router: appRouter,
+});
+export type AppRouter = typeof appRouter;
+export const Server = () => server.listen(3000);
