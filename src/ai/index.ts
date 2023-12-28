@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import type { aiProps } from "@/libs/types";
+import type { aiProps, aiResponse } from "@/libs/types";
 /**
  * AI function that interacts with the OpenAI API to generate responses based on user prompts.
  * @param props - The input properties for the AI function.
@@ -32,13 +32,12 @@ export const ai = async (props: aiProps) => {
 
   let messages: OpenAI.Beta.Threads.Messages.ThreadMessagesPage =
     await openai.beta.threads.messages.list(thread.id);
-  let status = await openai.beta.threads.runs.retrieve(thread.id, run.id);
+  await openai.beta.threads.runs.retrieve(thread.id, run.id);
 
-  while (status.status !== "completed") {
-    await delay(250);
-    status = await openai.beta.threads.runs.retrieve(thread.id, run.id);
+  while (messages.data.length !== 2) {
+    await delay(50);
     messages = await openai.beta.threads.messages.list(thread.id);
   }
 
-  return messages.data[0]?.content;
+  return messages.data[0]!.content as aiResponse;
 };

@@ -1,13 +1,21 @@
-import { gui } from "@/libs/types";
 import express from "express";
-const gui = async ({}: gui) => {
+import { ai } from "@/ai/index";
+import { aiProps, aiResponse } from "@/libs/types";
+const server = () => {
   const app = express();
-  const port = 3000;
-  app.get("/", (req, res) => {
-    res.render("Hello World!");
+  app.use(express.json());
+
+  app.post("/api/ai", async (req, res) => {
+    const data = req.body as aiProps;
+    try {
+      const response = (await ai(data)) as aiResponse;
+      res.json(response);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+    console.log(data);
   });
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-  });
+
+  app.listen(3000, () => {});
 };
-export { gui };
+export { server };
