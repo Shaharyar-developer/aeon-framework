@@ -8,7 +8,9 @@ This framework/base provides a solid foundation for developing AI applications i
 ## Features
 
 - **Feature 1**: Using the OpenAI api to create ai apps.
-- **Feature 2**: use the ai library provided by vercel.
+- **Feature 2**: Achieving complete typesafety with typescript types and zod.
+- **Feature 3** Use tRPC for end to end type-safety.
+  REST endpoints coming in future
 
 ## Installation
 
